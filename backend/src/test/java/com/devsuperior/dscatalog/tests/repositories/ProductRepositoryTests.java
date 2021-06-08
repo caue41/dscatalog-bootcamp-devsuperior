@@ -10,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 import com.devsuperior.dscatalog.entities.Product;
 import com.devsuperior.dscatalog.repositories.ProductRepository;
@@ -35,6 +34,16 @@ public class ProductRepositoryTests {
 		countTotalProducts = 25L;
 		countPCGamerProducts = 21L;
 		pageRequest = PageRequest.of(0, 10);
+	}
+	
+	@Test
+	public void findShouldReturnNothingWhenNameDoesNotExist() {
+		
+		String name = "Câmera";
+		
+		Page<Product> result = repository.find(null, name, pageRequest);
+		
+		Assertions.assertTrue(result.isEmpty());
 	}
 	
 	@Test
