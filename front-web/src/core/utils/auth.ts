@@ -26,7 +26,7 @@ export const saveSessionData = (loginResponse: LoginResponse) => {
 }
 
 export const getSessionData = () => {
-    const sessionData = localStorage.getItem('authData') || '{}';
+    const sessionData = localStorage.getItem('authData') ?? '{}';
     const parsedSessionData = JSON.parse(sessionData);
 
     return parsedSessionData as LoginResponse;
